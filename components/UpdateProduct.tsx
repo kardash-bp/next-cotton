@@ -50,6 +50,7 @@ const UpdateProduct = ({ id }: { id: string }) => {
     variables: { id },
   })
   let { inputs, handleChange, resetForm, imgRef } = useForm(data?.product)
+
   const [updateProduct, { error: updateError, loading: updateLoading }] =
     useMutation(UPDATE_PRODUCT_QUERY, {
       variables: {

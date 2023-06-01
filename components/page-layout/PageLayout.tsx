@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   --offWhite: #f6f5f2;
   --green: #9ba477;
   --yellow: #e89600;
-  --maxWidth: 1024px;
+  --maxWidth: 1280px;
   --bs: 0 12px 24px 0 rgba(0, 0, 0, 0.09);
 }
 html {

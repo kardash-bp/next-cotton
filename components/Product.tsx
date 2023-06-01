@@ -13,8 +13,8 @@ const Product = ({ product }: { product: ProductType }) => {
       {imgUrl && (
         <Image
           src={imgUrl}
-          width={400}
-          height={400}
+          width={300}
+          height={300}
           alt='Product'
           loading='lazy'
         />

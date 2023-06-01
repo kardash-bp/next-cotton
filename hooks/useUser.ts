@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import Loader from '../components/Loader';
-import DisplayError from '../components/DisplayError';
+
 const CURRENT_USER_QUERY = gql`
   query CurrentUser($id: ID!) {
     cottonUser(where: {id:$id}){

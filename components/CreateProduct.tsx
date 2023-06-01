@@ -6,7 +6,7 @@ import DisplayError from './DisplayError'
 import { ALL_PRODUCTS_QUERY } from './Products'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_PRESET } from '../config'
+import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_PRESET, PER_PAGE } from '../config'
 
 export const CREATE_PRODUCT_MUTATION = gql`
   mutation CreateProduct(
@@ -53,11 +53,7 @@ const CreateProduct = () => {
     .join('-')
     .toLocaleLowerCase()
   const [createProduct, { loading, error, data }] = useMutation(
-    CREATE_PRODUCT_MUTATION,
-    {
-      // variables: { ...inputs, slug, imgUrl },
-      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
-    }
+    CREATE_PRODUCT_MUTATION
   )
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -78,6 +74,12 @@ const CreateProduct = () => {
     try {
       const res = await createProduct({
         variables: { ...inputs, slug, imgUrl },
+        refetchQueries: [
+          {
+            query: ALL_PRODUCTS_QUERY,
+            variables: { skip: 0, first: PER_PAGE },
+          },
+        ],
       })
       // console.log(res)
       resetForm()

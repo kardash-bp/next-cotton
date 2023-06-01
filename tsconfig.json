@@ -25,7 +25,8 @@
     "**/*.tsx",
     "lib/paginationField.ts",
     "pages/api/auth/[...nextauth].ts",
-    "components/styles/CartStyles.ts"
+    "components/styles/CartStyles.ts",
+    "assets/iconsSvg.js"
   ],
   "exclude": [
     "node_modules"
