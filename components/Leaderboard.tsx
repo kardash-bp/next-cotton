@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 const BannerStyles = styled.div`
-  background-color: var(--green);
+  background-color: var(--lightgrey);
   width: 100%;
   height: 90px;
   margin-bottom: 4rem;

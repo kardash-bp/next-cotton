@@ -24,7 +24,7 @@ const PaginationStyles = styled.div`
     }
     &:after {
       height: 2px;
-      background: var(--red);
+      background: var(--pink);
       content: '';
       width: 0;
       position: absolute;

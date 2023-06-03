@@ -36,19 +36,19 @@ const CartStyles = styled.div<StyleTypes>`
     height: 32px;
     button {
       cursor: pointer;
-      color:red;
+      color:var(--navy);
       font-weight:700;
 
     }
  }
  header {
-    border-bottom: 5px solid var()(--black);
+    border-bottom: 5px solid var()(--navy);
     border-radius: .3rem;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
   }
  footer {
-    border-top: 10px double var(--black);
+    border-top: 10px double var(--navy);
     margin-top: 2rem;
     padding-top: 2rem;
     display: grid;
@@ -58,7 +58,7 @@ const CartStyles = styled.div<StyleTypes>`
     font-weight: 900;
      p {
       margin: 0;
-      color:var(--black)
+      color:var(--navy)
     }
   }
  ul {

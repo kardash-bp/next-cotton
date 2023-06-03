@@ -53,7 +53,7 @@ const NavStyles = styled.div`
     &.non-active {
       &:after {
         height: 3px;
-        background: var(--red);
+        background: var(--pink);
         content: '';
         width: 0;
         position: absolute;

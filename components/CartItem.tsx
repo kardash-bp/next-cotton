@@ -6,7 +6,7 @@ import DisplayError from './DisplayError'
 import { useEffect, useState } from 'react'
 
 const CartItemStyles = styled.li`
-  color: var(--black);
+  color: var(--navy);
   padding: 1rem 0;
   border-bottom: 1px solid var(--lightGray);
   display: grid;
@@ -22,7 +22,7 @@ const CartItemStyles = styled.li`
     justify-content: space-between;
     font-size: 2rem;
     span:last-child {
-      color: var(--red);
+      color: var(--pink);
       font-weight: 600;
     }
   }

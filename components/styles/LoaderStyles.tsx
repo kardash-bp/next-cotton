@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
   text-align: center;
   div {
     position: absolute;
-    border: 4px solid var(--red);
+    border: 4px solid var(--pink);
     opacity: 1;
     border-radius: 50%;
     animation: ${animation} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

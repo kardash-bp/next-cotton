@@ -4,7 +4,7 @@ import Nav from './Nav'
 import styled from 'styled-components'
 const Logo = styled.h1`
   display: inline-block;
-  background-color: var(--red);
+  background-color: var(--pink);
   position: relative;
   z-index: 2;
   transform: skew(-7deg);
@@ -21,7 +21,7 @@ const HeaderStyle = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--black);
+  background: var(--navy);
   .bar {
     height: 8rem;
     width: 100%;

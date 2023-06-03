@@ -23,24 +23,24 @@ const ProductStyles = styled.div`
     object-fit: contain;
   }
   .buttonList {
+    margin-top: 2rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;
 
     button {
-      background: var(--red);
+      background: var(--pink);
       color: white;
       border: transparent;
     }
     .productBtn {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      justify-content: space-around;
+      gap: 0.5rem;
       width: 10rem;
-      height: 3.5rem;
       font-size: 1.5rem;
-      padding: 1rem;
+      padding: 0.5rem;
       margin-bottom: 1rem;
 
       border-radius: 3px;

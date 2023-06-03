@@ -21,7 +21,7 @@ export const FormStyles = styled.form`
   line-height: 1.5;
   font-weight: 600;
   label {
-    color: var(--green);
+    color: var(--greyViolet);
     display: block;
     margin-bottom: 1rem;
   }
@@ -36,7 +36,7 @@ export const FormStyles = styled.form`
     border-radius: 0.3rem;
     &:focus {
       outline: 0;
-      border-color: var(--red);
+      border-color: var(--pink);
     }
   }
   input[type='file']::file-selector-button {
@@ -63,7 +63,7 @@ export const FormStyles = styled.form`
       cursor: pointer;
     }
     button[type='submit'] {
-      background-color: var(--red);
+      background-color: var(--pink);
     }
     a,
     a:visited,
@@ -90,9 +90,9 @@ export const FormStyles = styled.form`
       display: block;
       background-image: linear-gradient(
         to right,
-        var(--green) 0%,
+        var(--greyViolet) 0%,
         var(--offWhite) 50%,
-        var(--green) 100%
+        var(--greyViolet) 100%
       );
     }
     &[aria-busy='true']::before {

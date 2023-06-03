@@ -6,7 +6,7 @@ const Title = styled.h3`
   text-align: center;
   transform: skew(-5deg) rotate(-1deg);
   margin-top: -2rem;
-  background-color: var(--black);
+  background-color: var(--navy);
   border-radius: 0.8rem;
   a {
     display: inline;

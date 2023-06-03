@@ -10,8 +10,6 @@ const products = () => {
     <>
       <Products page={page} />
       <Pagination page={page || 1} />
-
-      <footer>Powered by me</footer>
     </>
   )
 }
