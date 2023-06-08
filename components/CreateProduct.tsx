@@ -52,7 +52,7 @@ const CreateProduct = () => {
     .split(' ')
     .join('-')
     .toLocaleLowerCase()
-  const [createProduct, { loading, error, data }] = useMutation(
+  const [createProduct, { loading, error }] = useMutation(
     CREATE_PRODUCT_MUTATION
   )
   const handleSubmit = async (e: FormEvent) => {

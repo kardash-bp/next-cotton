@@ -67,7 +67,7 @@ export const authOptions: NextAuthOptions = ({
         id: string;
         name: string;
         email: string;
-        cartItems: { quantity: number, pid: string }[]
+        cartItems: { id: string, quantity: number, pid: string }[]
       }
       return session
     },

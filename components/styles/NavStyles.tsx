@@ -11,11 +11,12 @@ const NavStyles = styled.div`
   letter-spacing: 0.125rem;
 
   button {
+    display: flex;
     width: 32px;
     height: auto;
     margin-inline: 1rem;
     background: none;
-    color: var(--offWhite);
+    color: var(--pink);
     border: 0;
     cursor: pointer;
   }

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { cartIcon } from '../assets/iconsSvg'
 
 const Nav = () => {
-  const { openCart } = useCart()
+  const { cartProducts, openCart } = useCart()
   const router = useRouter()
   const currentRoute = router.pathname
   const { data: session, status } = useSession()
@@ -53,7 +53,7 @@ const Nav = () => {
               <Cart />
               <a onClick={() => signOut()}>Sign out</a>
               <button type='button' onClick={openCart}>
-                {cartIcon}
+                {cartIcon} {cartProducts.length > 0 && cartProducts.length}
               </button>
             </>
           )}

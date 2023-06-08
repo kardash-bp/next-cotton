@@ -70,7 +70,6 @@ const CartItem = ({
   if (error) {
     return <DisplayError error={error} />
   }
-  console.log(data)
   return (
     <CartItemStyles>
       {data?.product && (

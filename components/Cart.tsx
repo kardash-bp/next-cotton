@@ -1,24 +1,57 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CartStyles from './styles/CartStyles'
 import Supreme from './styles/Supreme'
 import CartItem from './CartItem'
-import { SessionType } from '../@types/types'
+import { CartItemType, SessionType } from '../@types/types'
 import { useSession } from 'next-auth/react'
 import { useCart } from '../hooks/useCart'
 import { useOutsideClick } from '../hooks/useOutsideClick'
+import { gql, useQuery } from '@apollo/client'
+import Loader from './Loader'
 
+const USERS_CART_QUERY = gql`
+  query UsersCart($email: String!) {
+    cottonUser(where: { email: $email }) {
+      cartItems {
+        pid
+        quantity
+        uid
+        id
+      }
+    }
+  }
+`
 const Cart = () => {
   const cartRef = useRef(null)
-  const { closeCart, toggleCart } = useCart()
+  const { cartProducts, closeCart, toggleCart, setCart } = useCart()
   const { data: session, status } = useSession()
   const { user } = session?.user ? session : { user: undefined }
   const authUser = user as SessionType
   const [totalToPay, setTotalToPay] = useState(0)
-  const cart = authUser?.cartItems?.length > 0 ? authUser.cartItems : []
+
+  const { data, loading, error, refetch } = useQuery(USERS_CART_QUERY, {
+    variables: { email: authUser.email },
+  })
+
   const handleTotal = (total: number) => {
     setTotalToPay((prev) => prev + total)
   }
   useOutsideClick(cartRef, closeCart)
+
+  useEffect(() => {
+    refetch()
+  }, [])
+
+  useEffect(() => {
+    const cart: CartItemType[] =
+      data?.cottonUser.cartItems.length > 0 ? data.cottonUser.cartItems : []
+    if (cart.length > 0) {
+      setCart(cart)
+    }
+  }, [data])
+  if (loading) return <Loader />
+  if (error) return <p>Error: {error.message}</p>
+  console.log({ cartProducts })
   return (
     <CartStyles open={toggleCart}>
       <div className='modal' ref={cartRef}>
@@ -42,8 +75,8 @@ const Cart = () => {
           <Supreme>{user?.name}'s Cart</Supreme>
         </header>
         <ul>
-          {cart.length &&
-            cart.map((item: any, i: number) => {
+          {cartProducts.length &&
+            cartProducts?.map((item: any, i: number) => {
               return (
                 <CartItem
                   key={i}

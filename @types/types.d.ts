@@ -16,6 +16,7 @@ export type UserType = {
   password?: string
   resetPasswordToken?: string
   cartItems?: {
+    id: string
     quantity: number
     pid: string
   }[]
@@ -25,6 +26,7 @@ export type SessionType = {
   name: string
   email: string
   cartItems: {
+    id: string
     quantity: number
     pid: string
   }[]
@@ -36,4 +38,10 @@ export default interface IFile {
   url: string,
   name: string,
 }
-export type CartContextType = { cart: ProductType[] | [] }
+export type CartItemType = {
+  uid: string
+  pid: string
+  quantity: string
+
+}
+export type CartContextType = { cartProducts: CartItemType[] | [], setCart: (data: CartItemType[]) => void, toggleCart: boolean, toggle: () => void, openCart: () => void, closeCart: () => void }

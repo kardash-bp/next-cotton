@@ -5,14 +5,13 @@ import { ProductType } from '../@types/types'
 import ItemStyles from './styles/ItemStyles'
 import PriceTag from './styles/PriceTag'
 import Title from './styles/Title'
-import AddToCart from './AddToCart'
+import AddToCartBtn from './AddToCart'
 import { useUser } from '../hooks/useUser'
 import { useSession } from 'next-auth/react'
 
 const Product = ({ product }: { product: ProductType }) => {
   const { id, name, price, imgUrl, description } = product
   const authUser = useSession()
-  console.log(authUser)
   return (
     <ItemStyles>
       {imgUrl && (
@@ -31,7 +30,7 @@ const Product = ({ product }: { product: ProductType }) => {
       <p>{description}</p>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         {authUser.status === 'authenticated' && (
-          <AddToCart pid={id!} user={authUser?.data?.user} />
+          <AddToCartBtn pid={id!} user={authUser?.data?.user} />
         )}
       </div>
     </ItemStyles>
