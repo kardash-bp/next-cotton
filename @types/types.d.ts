@@ -42,6 +42,7 @@ export type CartItemType = {
   uid: string
   pid: string
   quantity: string
+  price: number
 
 }
-export type CartContextType = { cartProducts: CartItemType[] | [], setCart: (data: CartItemType[]) => void, toggleCart: boolean, toggle: () => void, openCart: () => void, closeCart: () => void }
+export type CartContextType = { cartProducts: CartItemType[] | [], setCart: (data: CartItemType[]) => void, toggleCart: boolean, toggle: () => void, openCart: () => void, closeCart: () => void, setEmptyCart: () => void }

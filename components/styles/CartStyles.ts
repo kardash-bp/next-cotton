@@ -3,8 +3,7 @@ type StyleTypes = {
   open?: true | false
 }
 const CartStyles = styled.div<StyleTypes>`
-  
-  background-color: rgba(0,0,0,0.7);;
+  background-color: rgba(0, 0, 0, 0.75);
  position: fixed;
  padding:2rem;
   top: 0;
@@ -22,7 +21,7 @@ const CartStyles = styled.div<StyleTypes>`
   width: 500px;
   min-width: 400px;
   padding: 20px;
-  background-color:var(--offWhite);
+  background-color:var(--lightgrey);
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
   z-index:10;
 
@@ -48,17 +47,30 @@ const CartStyles = styled.div<StyleTypes>`
     padding-bottom: 2rem;
   }
  footer {
-    border-top: 10px double var(--navy);
+    border-top: 5px solid var(--navy);
     margin-top: 2rem;
     padding-top: 2rem;
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 900;
-     p {
-      margin: 0;
-      color:var(--navy)
+    margin: 0;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+      div {
+        color:var(--navy)
+      }
+      button{
+        width:auto;
+        color:var(--navy);
+        font-size:1.5rem;
+        border: 1px solid var(--navy);
+        padding-inline: .5rem;
+       border-radius: 4px; 
+       transition: all .25s ease-out;
+       &:hover {
+        color: var(--pink);
+        border-color: var(--pink);
+      }
     }
   }
  ul {

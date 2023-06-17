@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import CartStyles from './styles/CartStyles'
 import Supreme from './styles/Supreme'
 import CartItem from './CartItem'
@@ -6,9 +6,16 @@ import { CartItemType, SessionType } from '../@types/types'
 import { useSession } from 'next-auth/react'
 import { useCart } from '../hooks/useCart'
 import { useOutsideClick } from '../hooks/useOutsideClick'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import Loader from './Loader'
 
+const EMPTY_CART_MUTATION = gql`
+  mutation {
+    deleteManyCartItems {
+      count
+    }
+  }
+`
 const USERS_CART_QUERY = gql`
   query UsersCart($email: String!) {
     cottonUser(where: { email: $email }) {
@@ -17,13 +24,15 @@ const USERS_CART_QUERY = gql`
         quantity
         uid
         id
+        price
       }
     }
   }
 `
 const Cart = () => {
   const cartRef = useRef(null)
-  const { cartProducts, closeCart, toggleCart, setCart } = useCart()
+  const { cartProducts, closeCart, toggleCart, setCart, setEmptyCart } =
+    useCart()
   const { data: session, status } = useSession()
   const { user } = session?.user ? session : { user: undefined }
   const authUser = user as SessionType
@@ -32,10 +41,26 @@ const Cart = () => {
   const { data, loading, error, refetch } = useQuery(USERS_CART_QUERY, {
     variables: { email: authUser.email },
   })
+  const [deleteManyCartItems, { error: delError, loading: delLoading }] =
+    useMutation(EMPTY_CART_MUTATION)
 
-  const handleTotal = (total: number) => {
-    setTotalToPay((prev) => prev + total)
+  const emptyCart = async () => {
+    if (confirm('Are you sure?')) {
+      const res = await deleteManyCartItems()
+      console.log(res)
+      setEmptyCart()
+      closeCart()
+    }
   }
+  const handleTotal = () => {
+    console.log('total handler')
+    const sum = cartProducts
+      .map((item: CartItemType) => Number(item.quantity) * (item.price / 100))
+      .reduce((acc: number, cur: number) => acc + cur, 0)
+    setTotalToPay(sum)
+  }
+  useMemo(() => handleTotal(), [cartProducts])
+
   useOutsideClick(cartRef, closeCart)
 
   useEffect(() => {
@@ -49,9 +74,9 @@ const Cart = () => {
       setCart(cart)
     }
   }, [data])
-  if (loading) return <Loader />
+  if (loading || delLoading) return <Loader />
   if (error) return <p>Error: {error.message}</p>
-  console.log({ cartProducts })
+  if (delError) return <p>Error: {delError.message}</p>
   return (
     <CartStyles open={toggleCart}>
       <div className='modal' ref={cartRef}>
@@ -77,19 +102,15 @@ const Cart = () => {
         <ul>
           {cartProducts.length &&
             cartProducts?.map((item: any, i: number) => {
-              return (
-                <CartItem
-                  key={i}
-                  pid={item.pid}
-                  qty={item.quantity}
-                  cb={handleTotal}
-                />
-              )
+              return <CartItem key={i} pid={item?.pid} qty={item?.quantity} />
             })}
         </ul>
-        <footer>
-          <p>total: {totalToPay}&euro;</p>
-        </footer>
+        {cartProducts?.length > 0 && (
+          <footer>
+            <div>total: {totalToPay}&euro;</div>
+            <button onClick={emptyCart}>Empty cart</button>
+          </footer>
+        )}
       </div>
     </CartStyles>
   )

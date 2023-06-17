@@ -17,6 +17,9 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
   function setCart(data: CartItemType[]) {
     setCartProducts(data)
   }
+  function setEmptyCart() {
+    setCartProducts([])
+  }
 
   return (
     <CartContext.Provider
@@ -27,6 +30,7 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
         toggle,
         openCart,
         closeCart,
+        setEmptyCart,
       }}
     >
       {' '}

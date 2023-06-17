@@ -30,7 +30,7 @@ const Product = ({ product }: { product: ProductType }) => {
       <p>{description}</p>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         {authUser.status === 'authenticated' && (
-          <AddToCartBtn pid={id!} user={authUser?.data?.user} />
+          <AddToCartBtn pid={id!} price={price} user={authUser?.data?.user} />
         )}
       </div>
     </ItemStyles>
